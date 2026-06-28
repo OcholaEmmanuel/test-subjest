@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athena Library Portal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #d35400;
+            --bg-light: #f8f9fa;
+            --text-dark: #333;
+            --border-radius: 8px;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e272e 0%, #2c3e50 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .portal-container {
+            background: white;
+            width: 100%;
+            max-width: 420px;
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .brand-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .brand-header h1 {
+            color: var(--primary-color);
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-header p {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            font-size: 15px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+        }
+
+        .action-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            margin-top: 10px;
+        }
+
+        .action-btn:hover {
+            background-color: #34495e;
+        }
+
+        .switch-prompt {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        .switch-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .switch-link:hover {
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .alert-box {
+            padding: 12px;
+            background-color: #fadbd8;
+            color: #78281f;
+            border-left: 4px solid #cd6155;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="portal-container">
+        <div class="brand-header">
+            <h1>📚 Athena Library</h1>
+            <p id="portal-subtitle">Access your digital bookshelf</p>
+        </div>
+
+        <div id="message-box" class="alert-box hidden"></div>
+
+        <form id="login-form">
+            <div class="form-group">
+                <label for="login-card">Card ID or Email</label>
+                <input type="text" id="login-card" placeholder="e.g., LIB-98214" value="LIB-ADMIN" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" placeholder="••••••••" value="password123" required>
+            </div>
+
+            <button type="submit" class="action-btn">Sign In</button>
+            
+            <p class="switch-prompt">
+                New reader? <span class="switch-link" id="go-to-register">Create a library card</span>
+            </p>
+        </form>
+
+        <form id="register-form" class="hidden">
+            <div class="form-group">
+                <label for="reg-name">Full Name</label>
+                <input type="text" id="reg-name" placeholder="John Doe" required>
+            </div>
+
+            <div class="form-group">
+                <label for="reg-email">Email Address</label>
+                <input type="email" id="reg-email" placeholder="john@example.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="reg-password">Create Password</label>
+                <input type="password" id="reg-password" placeholder="Minimum 6 characters" required>
+            </div>
+
+            <button type="submit" class="action-btn" style="background-color: var(--accent-color);">Register Account</button>
+            
+            <p class="switch-prompt">
+                Already have a card? <span class="switch-link" id="go-to-login">Sign in here</span>
+            </p>
+        </form>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const subtitle = document.getElementById('portal-subtitle');
+        const msgBox = document.getElementById('message-box');
+
+        document.getElementById('go-to-register').addEventListener('click', () => {
+            loginForm.classList.add('hidden');
+            registerForm.classList.remove('hidden');
+            subtitle.textContent = "Register for a new digital library card";
+            hideMessage();
+        });
+
+        document.getElementById('go-to-login').addEventListener('click', () => {
+            registerForm.classList.add('hidden');
+            loginForm.classList.remove('hidden');
+            subtitle.textContent = "Access your digital bookshelf";
+            hideMessage();
+        });
+
+        function showMessage(text) {
+            msgBox.textContent = text;
+            msgBox.classList.remove('hidden');
+        }
+        function hideMessage() {
+            msgBox.classList.add('hidden');
+        }
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const cardId = document.getElementById('login-card').value;
+            const pass = document.getElementById('login-password').value;
+
+            if (pass.length < 6) {
+                showMessage("🔒 Password must be at least 6 characters long.");
+            } else {
+                hideMessage();
+                window.location.href = `dashboard.html?cardId=${encodeURIComponent(cardId)}`;
+            }
+        });
+
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value;
+            
+            hideMessage();
+            alert(`Account created successfully for ${name}! Your library card ID will be emailed to you.`);
+            document.getElementById('go-to-login').click();
+        });
+    </script>
+</body>
+</html>
