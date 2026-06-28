@@ -56,7 +56,6 @@
             margin-top: 5px;
         }
 
-        /* Forms Setup */
         .form-group {
             margin-bottom: 20px;
             position: relative;
@@ -149,12 +148,12 @@
         <form id="login-form">
             <div class="form-group">
                 <label for="login-card">Card ID or Email</label>
-                <input type="text" id="login-card" placeholder="e.g., LIB-98214" required>
+                <input type="text" id="login-card" placeholder="e.g., LIB-98214" value="LIB-ADMIN" required>
             </div>
             
             <div class="form-group">
                 <label for="login-password">Password</label>
-                <input type="password" id="login-password" placeholder="••••••••" required>
+                <input type="password" id="login-password" placeholder="••••••••" value="password123" required>
             </div>
 
             <button type="submit" class="action-btn">Sign In</button>
@@ -225,7 +224,7 @@
                 showMessage("🔒 Password must be at least 6 characters long.");
             } else {
                 hideMessage();
-                alert(`Welcome back, ${cardId}! Redirecting you to the catalog...`);
+                window.location.href = `dashboard.html?cardId=${encodeURIComponent(cardId)}`;
             }
         });
 

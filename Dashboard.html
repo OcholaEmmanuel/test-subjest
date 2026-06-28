@@ -27,113 +27,12 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: stretch;
             padding: 20px;
         }
 
         .hidden {
             display: none !important;
-        }
-
-        .portal-container {
-            background: white;
-            width: 100%;
-            max-width: 420px;
-            padding: 40px 30px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        }
-
-        .brand-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .brand-header h1 {
-            color: var(--primary-color);
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .brand-header p {
-            color: #7f8c8d;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--text-dark);
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e2e8f0;
-            border-radius: var(--border-radius);
-            font-size: 15px;
-            transition: all 0.3s ease;
-            outline: none;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
-        }
-
-        .action-btn {
-            width: 100%;
-            padding: 14px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: var(--border-radius);
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s ease;
-            margin-top: 10px;
-        }
-
-        .action-btn:hover {
-            background-color: #34495e;
-        }
-
-        .switch-prompt {
-            text-align: center;
-            margin-top: 25px;
-            font-size: 14px;
-            color: #7f8c8d;
-        }
-
-        .switch-link {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .switch-link:hover {
-            text-decoration: underline;
-        }
-
-        .alert-box {
-            padding: 12px;
-            background-color: #fadbd8;
-            color: #78281f;
-            border-left: 4px solid #cd6155;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            font-size: 14px;
         }
 
         .dashboard-wrapper {
@@ -296,70 +195,65 @@
             grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            font-size: 15px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+        }
+
+        .action-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            margin-top: 10px;
+        }
+
+        .action-btn:hover {
+            background-color: #34495e;
+        }
     </style>
 </head>
 <body>
 
-    <div class="portal-container" id="auth-portal">
-        <div class="brand-header">
-            <h1>📚 Athena Library</h1>
-            <p id="portal-subtitle">Access your digital bookshelf</p>
-        </div>
-
-        <div id="message-box" class="alert-box hidden"></div>
-
-        <form id="login-form">
-            <div class="form-group">
-                <label for="login-card">Card ID or Email</label>
-                <input type="text" id="login-card" placeholder="e.g., LIB-98214" value="LIB-ADMIN" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="login-password">Password</label>
-                <input type="password" id="login-password" placeholder="••••••••" value="password123" required>
-            </div>
-
-            <button type="submit" class="action-btn">Sign In</button>
-            
-            <p class="switch-prompt">
-                New reader? <span class="switch-link" id="go-to-register">Create a library card</span>
-            </p>
-        </form>
-
-        <form id="register-form" class="hidden">
-            <div class="form-group">
-                <label for="reg-name">Full Name</label>
-                <input type="text" id="reg-name" placeholder="John Doe" required>
-            </div>
-
-            <div class="form-group">
-                <label for="reg-email">Email Address</label>
-                <input type="email" id="reg-email" placeholder="john@example.com" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="reg-password">Create Password</label>
-                <input type="password" id="reg-password" placeholder="Minimum 6 characters" required>
-            </div>
-
-            <button type="submit" class="action-btn" style="background-color: var(--accent-color);">Register Account</button>
-            
-            <p class="switch-prompt">
-                Already have a card? <span class="switch-link" id="go-to-login">Sign in here</span>
-            </p>
-        </form>
-    </div>
-
-
-    <div class="dashboard-wrapper hidden" id="dashboard-portal">
+    <div class="dashboard-wrapper" id="dashboard-portal">
         <aside>
             <div class="sidebar-top">
                 <div class="sidebar-brand">
                     <h2>📚 Athena Admin</h2>
                 </div>
                 <ul class="nav-menu">
-                    <li class="nav-item active" onclick="switchView('catalog-view')">📖 Book Inventory</li>
-                    <li class="nav-item" onclick="switchView('circulation-view')">🔄 Circulation (Issue/Return)</li>
+                    <li class="nav-item active" onclick="switchView('catalog-view', event)">📖 Book Inventory</li>
+                    <li class="nav-item" onclick="switchView('circulation-view', event)">🔄 Circulation (Issue/Return)</li>
                 </ul>
             </div>
             <button class="logout-btn" id="handle-logout">Secure Sign Out</button>
@@ -424,8 +318,7 @@
                             <th>Status Matrix</th>
                         </tr>
                     </thead>
-                    <tbody id="inventory-table-body">
-                        </tbody>
+                    <tbody id="inventory-table-body"></tbody>
                 </table>
             </div>
 
@@ -456,8 +349,7 @@
                             <th>Operational Action</th>
                         </tr>
                     </thead>
-                    <tbody id="circulation-table-body">
-                        </tbody>
+                    <tbody id="circulation-table-body"></tbody>
                 </table>
             </div>
         </main>
@@ -474,67 +366,26 @@
             { title: "Programming TypeScript", borrower: "Ochola Emmanuel", date: "2026-06-25" }
         ];
 
-        const authPortal = document.getElementById('auth-portal');
-        const dashboardPortal = document.getElementById('dashboard-portal');
-        const loginForm = document.getElementById('login-form');
-        const registerForm = document.getElementById('register-form');
-        const subtitle = document.getElementById('portal-subtitle');
-        const msgBox = document.getElementById('message-box');
-
-        document.getElementById('go-to-register').addEventListener('click', () => {
-            loginForm.classList.add('hidden');
-            registerForm.classList.remove('hidden');
-            subtitle.textContent = "Register for a new digital library card";
-            hideMessage();
-        });
-
-        document.getElementById('go-to-login').addEventListener('click', () => {
-            registerForm.classList.add('hidden');
-            loginForm.classList.remove('hidden');
-            subtitle.textContent = "Access your digital bookshelf";
-            hideMessage();
-        });
-
-        function showMessage(text) {
-            msgBox.textContent = text;
-            msgBox.classList.remove('hidden');
-        }
-        function hideMessage() {
-            msgBox.classList.add('hidden');
-        }
-
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const cardId = document.getElementById('login-card').value;
-            const pass = document.getElementById('login-password').value;
-
-            if (pass.length < 6) {
-                showMessage("🔒 Password must be at least 6 characters long.");
-                return;
-            }
-
-            hideMessage();
-            authPortal.classList.add('hidden');
-            dashboardPortal.classList.remove('hidden');
-            document.body.style.alignItems = "stretch"; 
-
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const cardId = urlParams.get('cardId') || 'LIB-ADMIN';
+            
             document.getElementById('user-badge-display').textContent = `Card: ${cardId}`;
             renderSystemMetrics();
         });
 
         document.getElementById('handle-logout').addEventListener('click', () => {
-            dashboardPortal.classList.add('hidden');
-            authPortal.classList.remove('hidden');
-            document.body.style.alignItems = "center";
-            loginForm.reset();
+            window.location.href = 'login.html';
         });
 
-        function switchView(targetViewId) {
+        function switchView(targetViewId, event) {
             document.querySelectorAll('.dashboard-view').forEach(view => view.classList.add('hidden'));
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
             
             document.getElementById(targetViewId).classList.remove('hidden');
-            event.target.classList.add('active');
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
         }
 
         function renderSystemMetrics() {
@@ -623,13 +474,6 @@
             circulationRecords.splice(recordIndex, 1);
             renderSystemMetrics();
         }
-
-        registerForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('reg-name').value;
-            alert(`Account created successfully for ${name}! Try logging in.`);
-            document.getElementById('go-to-login').click();
-        });
     </script>
 </body>
 </html>
